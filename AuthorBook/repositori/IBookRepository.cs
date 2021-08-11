@@ -7,7 +7,7 @@ namespace AuthorBook.repositori
 {
     public interface IBookrepository
     {
-        Task<book> create(book book);
+        Task<ActionResult<book>> create(book book);
         Task<ActionResult<book>> delete(int id);
         Task<ActionResult<book>> update(book book);
         Task<List<book>> getBooks();

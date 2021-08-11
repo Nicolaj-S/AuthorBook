@@ -27,6 +27,7 @@ namespace AuthorBook
             services.AddDbContext<DatabaseContext>(options=>
             {
                 options.UseSqlServer(Configuration.GetConnectionString("Connection"));
+                options.UseSqlServer(Configuration.GetConnectionString("Connection1"));
             });
             services.AddScoped<IAuthorRepositori, authorRepositori>();
             services.AddScoped<IBookrepository, bookRepsitory>();

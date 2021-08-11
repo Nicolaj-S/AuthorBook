@@ -20,12 +20,12 @@ namespace AuthorBook.Controllers
         //methoder der kalder på database
 
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<author>>> getAuthors()
+        public async Task<IActionResult> getAuthors()
         {
             try
             {
                 var Authors = await _context.getAuthors();
-                return Authors == null ? NoContent() : await _context.getAuthors();
+                return Authors == null ? NoContent() : Ok(Authors);
             }
             /*if (Author == null) { return NoContent(); } return await _authorRep.create(Author);*/
             catch (Exception e)

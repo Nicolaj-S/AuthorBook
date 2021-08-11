@@ -16,12 +16,12 @@ namespace AuthorBook.repositori
         {
             _context = context;
         }
-        public async Task<book> create(book book)
+        public async Task<ActionResult<book>> create(book book)
         {
             book.CreatedAt = DateTime.UtcNow;
             _context.Books.Add(book);
             await _context.SaveChangesAsync();
-            return book;
+            return book == null ? new NotFoundResult() : new OkResult();
         }
 
         public async Task<ActionResult<book>> delete(int id)
