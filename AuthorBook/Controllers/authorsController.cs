@@ -25,14 +25,14 @@ namespace AuthorBook.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<author>>> Getauthors()
         {
-            return await _context.authors.ToListAsync();
+            return await _context.Authors.ToListAsync();
         }
 
         // GET: api/authors/5
         [HttpGet("{id}")]
         public async Task<ActionResult<author>> Getauthor(int id)
         {
-            var author = await _context.authors.FindAsync(id);
+            var author = await _context.Authors.FindAsync(id);
 
             if (author == null)
             {
@@ -47,7 +47,7 @@ namespace AuthorBook.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Putauthor(int id, author author)
         {
-            if (id != author.id)
+            if (id != author.Id)
             {
                 return BadRequest();
             }
@@ -78,23 +78,23 @@ namespace AuthorBook.Controllers
         [HttpPost]
         public async Task<ActionResult<author>> Postauthor(author author)
         {
-            _context.authors.Add(author);
+            _context.Authors.Add(author);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("Getauthor", new { id = author.id }, author);
+            return CreatedAtAction("Getauthor", new { id = author.Id }, author);
         }
 
         // DELETE: api/authors/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> Deleteauthor(int id)
         {
-            var author = await _context.authors.FindAsync(id);
+            var author = await _context.Authors.FindAsync(id);
             if (author == null)
             {
                 return NotFound();
             }
 
-            _context.authors.Remove(author);
+            _context.Authors.Remove(author);
             await _context.SaveChangesAsync();
 
             return NoContent();
@@ -102,7 +102,7 @@ namespace AuthorBook.Controllers
 
         private bool authorExists(int id)
         {
-            return _context.authors.Any(e => e.id == id);
+            return _context.Authors.Any(e => e.Id == id);
         }
     }
 }

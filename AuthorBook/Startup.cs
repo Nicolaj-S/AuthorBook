@@ -2,18 +2,11 @@ using AuthorBook.NewFolder;
 using AuthorBook.repositori;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AuthorBook
 {
@@ -36,6 +29,7 @@ namespace AuthorBook
                 options.UseSqlServer(Configuration.GetConnectionString("Connection"));
             });
             services.AddScoped<IAuthorRepositori, authorRepositori>();
+            services.AddScoped<IBookrepository, bookRepsitory>();
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuthorBook", Version = "v1" });

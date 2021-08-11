@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AuthorBook.repositori
@@ -19,18 +18,18 @@ namespace AuthorBook.repositori
         }
         public async Task<book> create(book book)
         {
-            book.createdAt = DateTime.UtcNow;
-            _context.books.Add(book);
+            book.CreatedAt = DateTime.UtcNow;
+            _context.Books.Add(book);
             await _context.SaveChangesAsync();
             return book;
         }
 
         public async Task<ActionResult<book>> delete(int id)
         {
-            book book = await _context.books.FindAsync(id);
+            book book = await _context.Books.FindAsync(id);
             if (book != null)
             {
-                _context.books.Remove(book);
+                _context.Books.Remove(book);
                 await _context.SaveChangesAsync();
             }
             return book == null ? new NotFoundResult() : new OkResult();
@@ -39,31 +38,31 @@ namespace AuthorBook.repositori
 
         public async Task<book> getAuthorsBook(int bookId)
         {
-            return await _context.books.FindAsync(bookId);
+            return await _context.Books.FindAsync(bookId);
         }
 
         public async Task<book> getBook(int id)
         {
-            book book = await _context.books.FindAsync(id);
+            book book = await _context.Books.FindAsync(id);
             return book;
         }
 
         public async Task<List<book>> getBooks()
         {
-            List<book> book = await _context.books.ToListAsync();
+            List<book> book = await _context.Books.ToListAsync();
             return book;
         }
 
         public async Task<ActionResult<book>> update(book book)
         {
-            book updateBook = await _context.books.FindAsync(book.id);
+            book updateBook = await _context.Books.FindAsync(book.Id);
             if (updateBook != null)
             {
-                updateBook.title = book.title;
-                updateBook.pages = book.pages;
-                updateBook.authorid = book.authorid;
-                updateBook.updatedAt = DateTime.UtcNow;
-                _context.books.Update(updateBook);
+                updateBook.Title = book.Title;
+                updateBook.Pages = book.Pages;
+                updateBook.Authorid = book.Authorid;
+                updateBook.UpdatedAt = DateTime.UtcNow;
+                _context.Books.Update(updateBook);
                 await _context.SaveChangesAsync();
                 return new OkResult();
             }

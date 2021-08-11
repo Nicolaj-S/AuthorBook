@@ -26,15 +26,15 @@ namespace AuthorBook.test
             List<author> authorList = new List<author>();
             authorList.Add(new author
             {
-                id = 10,
-                firstname ="John",
-                lastname="Kurt"
+                Id = 10,
+                Firstname ="John",
+                Lastname="Kurt"
             });
             authorList.Add(new author 
             {
-                id = 11,
-                firstname = "Kurt",
-                lastname = "John"
+                Id = 11,
+                Firstname = "Kurt",
+                Lastname = "John"
             });
             dataSource.Setup(s => s.getAuthors()).ReturnsAsync(authorList);
 
@@ -45,7 +45,7 @@ namespace AuthorBook.test
             //assert - verificer
             var StatusCodeResult = (IStatusCodeActionResult)result;
             Assert.Equal(200, StatusCodeResult.StatusCode);
-
+            
         }
     }
 }

@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 
 namespace AuthorBook.domain
 {
     public class super
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         [JsonIgnore]
-        public DateTime deletedAt { get; set; }
+        public DateTime DeletedAt { get; set; }
         [JsonIgnore]
-        public DateTime createdAt { get; set; }
+        public DateTime CreatedAt { get; set; }
         [JsonIgnore]
-        public DateTime updatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }
