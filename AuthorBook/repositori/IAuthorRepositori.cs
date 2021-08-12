@@ -14,7 +14,5 @@ namespace AuthorBook.repositori
         //Task<List<author>> getAuthors(int start, int limit);
         Task<author> getAuthor(int id);
         Task<author> getAuthorBooks(int authorId);
-
-
     }
 }

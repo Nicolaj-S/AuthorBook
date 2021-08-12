@@ -2,7 +2,6 @@
 using AuthorBook.repositori;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace AuthorBook.Controllers
@@ -18,14 +17,19 @@ namespace AuthorBook.Controllers
         }
         public IAuthorRepositori _context { get; set; }
         //methoder der kalder på database
-
+       
         [HttpGet]
         public async Task<IActionResult> getAuthors()
         {
             try
             {
                 var Authors = await _context.getAuthors();
-                return Authors == null ? NoContent() : Ok(Authors);
+                if (Authors == null)
+                {
+                    return StatusCode(404); 
+                }
+                else if (Authors.Count == 0) {  return NoContent(); }
+                return Ok(Authors);
             }
             /*if (Author == null) { return NoContent(); } return await _authorRep.create(Author);*/
             catch (Exception e)
@@ -65,8 +69,8 @@ namespace AuthorBook.Controllers
         [HttpPost]
         public async Task<ActionResult<author>> PostAuthor(author Author)
         {
-            try 
-            { 
+            try
+            {
                 return Author == null ? NoContent() : await _context.create(Author);  
             }
             /*if (Author == null) { return NoContent(); } return await _authorRep.create(Author);*/
