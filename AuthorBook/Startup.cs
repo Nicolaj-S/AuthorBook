@@ -33,6 +33,8 @@ namespace AuthorBook
             services.AddScoped<IAuthorRepositori, authorRepositori>();
             services.AddScoped<IBookrepository, bookRepsitory>();
             services.AddScoped<IAuthorServices, AuthorServices>();
+            services.AddScoped<IBookservices, BookServices>();
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "AuthorBook", Version = "v1" });
